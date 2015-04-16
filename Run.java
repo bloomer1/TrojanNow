@@ -1,3 +1,5 @@
+package com.example.rahulagarwal.trojannowfl;
+
 /**
  * Created by rmu on 4/13/2015.
  *
@@ -24,7 +26,7 @@ public class Run {
         Component LU = new Login_Util("Login_Util");
         Component MU = new MakeRequest_Util("MakeRequest_Util");
         Component SN = new Sensor("Sensor");
-        Component SU = new Signup_Util("Signup_Util");
+       // Component SU = new SignupActivity("Signup_Util");
         Component UI = new User_Info("User_Info");
         Component UP = new User_Posts("User_Posts");
         Component V = new User_Validation("User_Validation");
@@ -38,7 +40,7 @@ public class Run {
         arch.addComponent(MU);
         arch.addComponent(SN);
         arch.addComponent(UP);
-        arch.addComponent(SU);
+        //arch.addComponent(SU);
         arch.addComponent(UI);
         arch.addComponent(V);
         arch.addComponent(WS);

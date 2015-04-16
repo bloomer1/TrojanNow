@@ -44,3 +44,9 @@ by the run() method in the components
 b. Make a simple GUI for login, and make some basic calls to component methods
 
 c. Start implementing connectors which will pass data to necessary components.
+
+
+For Signup
+
+You can see int he info log section all the data entered by the user
+

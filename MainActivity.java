@@ -1,6 +1,7 @@
 package com.example.rahulagarwal.trojannowfl;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +19,7 @@ public class MainActivity extends Activity {
     private EditText password=null;
     private TextView attempts;
     private Button login;
-    int counter = 3;
+   // int counter = 3;
 
 
     @Override
@@ -46,10 +47,13 @@ public class MainActivity extends Activity {
 
 
 
+
+
         }
 
-    public void signup(){
-
+    public void signup(View view){
+        Intent i = new Intent(getApplicationContext(), SignupActivity.class);
+        startActivity(i);
     }
 
     @Override
