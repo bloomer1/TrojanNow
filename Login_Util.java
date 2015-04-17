@@ -1,6 +1,7 @@
 package com.example.rahulagarwal.trojannowfl;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
@@ -34,8 +35,14 @@ public class Login_Util extends Component {
 
         if (username.getText().toString().equals("admin") &&
                 password.getText().toString().equals("admin")) {
-            Toast.makeText(con, "Redirecting...",
-                    Toast.LENGTH_SHORT).show();
+
+            Intent i = new Intent(con, Post.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            con.startActivity(i);
+
+
+            //Toast.makeText(con, "Redirecting...",
+              //      Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(con, "Wrong Credentials",
                     Toast.LENGTH_SHORT).show();
@@ -50,6 +57,8 @@ public class Login_Util extends Component {
         }
 
     }
+
+
     //logs out the user from the application
 
     public void logout(){
