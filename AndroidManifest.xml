@@ -19,6 +19,8 @@
 
         <activity android:name=".SignupActivity"
             android:label="Register New Account"></activity>
+        <activity android:name=".Post"
+            android:label="Post"></activity>
     </application>
 
 </manifest>
