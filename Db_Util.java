@@ -1,8 +1,11 @@
-package com.example.rahulagarwal.trojannowfl; /**
- * Created by rmu on 4/13/2015.
+package com.example.rmu.csci_578finalproject;
+
+/**
+ * Created by rmu on 4/15/2015.
  */
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.lang.*;
 
 public class Db_Util extends Component {
 

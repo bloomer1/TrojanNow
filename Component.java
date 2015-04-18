@@ -1,7 +1,7 @@
-package com.example.rahulagarwal.trojannowfl; /**
- * Created by rmu on 4/13/2015.
- *
- * Description: Component superclass with attributes and methods used by all Components
+package com.example.rmu.csci_578finalproject;
+
+/**
+ * Created by rmu on 4/15/2015.
  */
 import java.util.*;
 
