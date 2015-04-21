@@ -1,11 +1,9 @@
-package com.example.rahulagarwal.trojannowfl;
+package com.example.rmu.csci_578finalproject;
 
 /**
- * Created by rmu on 4/13/2015.
- *
- * Description: Subclass of Message that deals only with notifications (messages sent in response
- * to a request received earlier)
+ * Created by rmu on 4/15/2015.
  */
+import java.lang.*;
 
 public class Notification extends Message{
 

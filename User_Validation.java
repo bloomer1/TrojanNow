@@ -1,11 +1,10 @@
-package com.example.rahulagarwal.trojannowfl;
+package com.example.rmu.csci_578finalproject;
 
 /**
- * Created by rmu on 4/13/2015.
- *
- * Description: The component will validate user data such as login info before they are processed further by a TrojaNow server
- *
+ * Created by rmu on 4/15/2015.
  */
+import java.lang.*;
+
 public class User_Validation extends Component {
 
     private String userInput;

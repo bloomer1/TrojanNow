@@ -1,11 +1,10 @@
-package com.example.rahulagarwal.trojannowfl;
+package com.example.rmu.csci_578finalproject;
 
 /**
- * Created by rmu on 4/13/2015.
- *
- * Description: Component that collects info about the physical surroundings for which the user's
- * mobile device is in.
+ * Created by rmu on 4/15/2015.
  */
+import java.lang.*;
+
 public class Sensor extends Component {
 
     private String  sensorType;

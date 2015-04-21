@@ -1,12 +1,8 @@
-package com.example.rahulagarwal.trojannowfl;
+package com.example.rmu.csci_578finalproject;
 
 /**
- * Created by rmu on 4/13/2015.
- *
- * Description: Subclass of Message that deals only with requests (messages initially sent from one component
- * to another)
+ * Created by rmu on 4/15/2015.
  */
-
 public class Request extends Message {
 
     // Default constructor

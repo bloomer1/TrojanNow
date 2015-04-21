@@ -1,12 +1,10 @@
-package com.example.rahulagarwal.trojannowfl; /**
- * Created by rmu on 4/13/2015.
- *
- * Description: The component that keeps track of the posts a user makes
- *
- * Responsibilities: keep track of all relevant info regarding posts a particular user makes, such
- * as the date/time it was posted, who wrote it, how long it is, etc.
+package com.example.rmu.csci_578finalproject;
+
+/**
+ * Created by rmu on 4/15/2015.
  */
 import java.util.*;
+import java.lang.*;
 
 public class User_Posts extends Component {
 
