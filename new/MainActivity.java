@@ -41,10 +41,19 @@ public class MainActivity extends Activity {
     }
 
     public void login(View view) throws Exception{
+          //Method call to fetch all the Posts
+     retrieveAllPosts();
+
+        
         Login_Util lu = new Login_Util("Login_Util");
         lu.login(view,getApplicationContext(),username,password,login);
     }
+   
+   //Method stub to fetch all the Posts
 
+   public  void retrieveAllPosts(){
+
+    }
     public void signup(View view){
         Intent i = new Intent(getApplicationContext(), SignupActivity.class);
         startActivity(i);
