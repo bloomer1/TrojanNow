@@ -23,7 +23,7 @@ public class PostActivity extends Activity{
     private Button post;
     private boolean is_annonymous = false;
     private boolean is_temperature = false;
-    CheckBox c1;
+    CheckBox annonymous,temperature;
     //private String text;
     //private
 
@@ -44,25 +44,19 @@ public class PostActivity extends Activity{
         setContentView(R.layout.post);
 
         etext = (EditText)findViewById(R.id.text_content);
-
-
-
-
-
-        is_annonymous = ((CheckBox) findViewById(R.id.user_annonymous)).isChecked();
-        is_temperature = ((CheckBox) findViewById(R.id.user_weather)).isChecked();
-
-
-
-
-    }
+        annonymous = (CheckBox) findViewById(R.id.user_annonymous);
+        temperature = (CheckBox) findViewById(R.id.user_weather);
+ }
 
 
 
 
     public void clickpost(View view){
-        Log.d("Rahul", String.valueOf(is_temperature));
+
+        is_annonymous = annonymous.isChecked();
+        is_temperature = temperature.isChecked();
         Log.d("Rahul",String.valueOf(is_annonymous));
+        Log.d("Rahul", String.valueOf(is_temperature));
         Log.d("Rahul", etext.getText().toString());
         String text = etext.getText().toString();
         String temperature = null;
@@ -72,6 +66,7 @@ public class PostActivity extends Activity{
                 Toast.LENGTH_SHORT).show();
 
         //get tempearue data
+
         if(is_temperature == true){
 
 
