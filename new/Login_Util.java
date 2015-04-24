@@ -1,4 +1,4 @@
-package com.example.rahulagarwal.trojannowfl2;
+package com.example.rmu.csci_578finalproject;
 
 /**
  * Created by rmu on 4/15/2015.
@@ -41,15 +41,16 @@ import android.widget.EditText;
  */
 public class Login_Util extends Component {
 
-//    private EditText username=null;
+    //    private EditText username=null;
 //    private EditText password=null;
 //    private TextView attempts;
 //    private Button login;
 //    private int counter = 3;
-      public String uname;
-      public String pword;
-      public String loginInfo;
-      public Context context;
+    public String userloginID;
+    public String uname;
+    public String pword;
+    public String loginInfo;
+    public Context context;
 
     // ADDED by RICHARD MU 4/13/15: constructor
     public Login_Util(String Name)
@@ -90,7 +91,7 @@ public class Login_Util extends Component {
         String serverUrl;
 
 
-        
+
         for (int i = 9; i < 14; i++) {
             serverUrl = "http://cs578.roohy.me/user/";
             checker.addUrl(serverUrl+Integer.toString(i)+"/");
@@ -117,7 +118,7 @@ public class Login_Util extends Component {
             this.con = con;
         }
 
-        protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
+        protected String ParseDataIntoString(HttpEntity entity) throws IllegalStateException, IOException {
             InputStream in = entity.getContent();
             StringBuffer out = new StringBuffer();
             int n;
@@ -137,11 +138,12 @@ public class Login_Util extends Component {
                 try {
                     HttpResponse response = httpClient.execute(httpGet, localContext);
                     HttpEntity entity = response.getEntity();
-                    text = getASCIIContentFromEntity(entity);
+                    text = ParseDataIntoString(entity);
                     try {
                         JSONObject obj = new JSONObject(text);
                         String name = obj.getString("name");
                         if (loginInfo.equals(name)) {
+                            userloginID = Integer.toString(i+9);
                             output = "found";
                             break;
                         }
@@ -162,10 +164,11 @@ public class Login_Util extends Component {
 
                 Intent i = new Intent(con, PostActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("userID",userloginID);
                 con.startActivity(i);
 
                 //Toast.makeText(con, "Redirecting...",
-                  //      Toast.LENGTH_SHORT).show();
+                //      Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(con, "Wrong Credentials",
                         Toast.LENGTH_SHORT).show();

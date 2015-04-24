@@ -1,4 +1,4 @@
-package com.example.rahulagarwal.trojannowfl2;
+package com.example.rmu.csci_578finalproject;
 
 /**
  * Created by rmu on 4/15/2015.
@@ -53,7 +53,7 @@ public class Signup_Util extends Component {
             }
         }
 
-        protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
+        protected String ParseDataIntoString(HttpEntity entity) throws IllegalStateException, IOException {
             InputStream in = entity.getContent();
             StringBuffer out = new StringBuffer();
             int n;
@@ -80,7 +80,7 @@ public class Signup_Util extends Component {
                 try {
                     HttpResponse response = httpClient.execute(httpGet, localContext);
                     HttpEntity entity = response.getEntity();
-                    text = getASCIIContentFromEntity(entity);
+                    text = ParseDataIntoString(entity);
                     try {
                         JSONObject obj = new JSONObject(text);
                         String name = obj.getString("name");
@@ -90,7 +90,7 @@ public class Signup_Util extends Component {
                             break;
                         }
                     } catch (JSONException e) {
-
+                        e.printStackTrace();
                     }
                 }
                 catch (Exception e) {
