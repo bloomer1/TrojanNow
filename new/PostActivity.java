@@ -1,4 +1,4 @@
-package com.example.rmu.csci_578finalproject;
+package com.example.rahulagarwal.trojannowfl2;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,18 +9,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.rmu.csci_578finalproject.model.Weather;
+import com.example.rahulagarwal.trojannowfl2.model.Weather;
 
 
 public class PostActivity extends Activity{
 
 
+
+    TextView postView,postView2;
+    LinearLayout l1;
+    final TextView[] myTextViews = new TextView[50];
+    LinearLayout linearLayout;
+    int a, b,c,d;
 
     private String userID;
     private EditText  etext=null;
@@ -70,7 +78,7 @@ public class PostActivity extends Activity{
         Log.d("Rahul", etext.getText().toString());
         String text = etext.getText().toString();
 
-        Post_Util posts = new Post_Util("Post_Util", userID);
+        Post_Util posts = new Post_Util("Post_Util", userID, this);
 
         if(is_temperature == true){
             GetCoord gc = new GetCoord(PostActivity.this);
@@ -128,11 +136,10 @@ public class PostActivity extends Activity{
             opentemperature = Math.round((weather.temperature.getTemp() - 273.15)) + " C";
             Log.d("opentemperature", opentemperature);
 
-            //  savePostAndRetrievePosts(text, is_annonymous, opentemperature);
 
 
-            Toast.makeText(getApplicationContext(), "posted...",
-                    Toast.LENGTH_SHORT).show();
+
+
 
         }
 
@@ -166,9 +173,28 @@ public class PostActivity extends Activity{
      NOTE THIS ARRAY HAS ALREADY BEEN SORTED BY TIME OF POST, WITH LATEST POSTS PRINTED FIRST
      */
     void updatePosts(JSONArray jsonData) {
+
+
+
+
+        int []arr = {R.id.p1,R.id.p2,R.id.p3,R.id.p4,R.id.p5,
+                R.id.p6,R.id.p7,R.id.p8,R.id.p9,R.id.p10,
+                R.id.p11,R.id.p12,R.id.p13,R.id.p14,R.id.p15,
+                R.id.p16,R.id.p17,R.id.p18,R.id.p19,R.id.p20,
+                R.id.p21,R.id.p22,R.id.p23,R.id.p24,R.id.p25,
+                R.id.p26,R.id.p27,R.id.p28,R.id.p29,R.id.p30,
+                R.id.p31,R.id.p32,R.id.p33,R.id.p34,R.id.p35,
+                R.id.p36,R.id.p37,R.id.p38,R.id.p39,R.id.p40,
+                R.id.p41,R.id.p42,R.id.p43,R.id.p44,R.id.p45,
+                R.id.p46,R.id.p47,R.id.p48,R.id.p49,R.id.p50
+        };
+
+
         for (int i = jsonData.length()-1; i >= 0; i--) {
             System.out.println("-------------------------------------------------------");
             try {
+
+
                 JSONObject onePost = jsonData.getJSONObject(i);
                 String info = onePost.getString("info");
                 String [] data = info.split(",");
@@ -179,9 +205,28 @@ public class PostActivity extends Activity{
                 System.out.println("Anonymous: " + anon);
                 System.out.println("Temperature: " + temp);
                 System.out.println("PostID: " + onePost.getString("pk"));
+
+                try {
+
+
+
+
+                    postView = (TextView) findViewById(arr[i]);
+
+                    postView.setText(onePost.getString("text"));
+
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+
         }
         System.out.println("-------------------------------------------------------");
     }

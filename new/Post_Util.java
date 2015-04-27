@@ -1,4 +1,4 @@
-package com.example.rmu.csci_578finalproject;
+package com.example.rahulagarwal.trojannowfl2;
 
 /**
  * Created by rmu on 4/23/2015.
@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.JsonWriter;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -38,10 +39,13 @@ import java.util.Scanner;
 public class Post_Util extends Component {
 
     private String userID;
-    public Post_Util(String Name, String userID)
+    PostActivity frontend;
+
+    public Post_Util(String Name, String userID,PostActivity pos)
     {
         super(Name);
         this.userID = userID;
+        frontend = pos;
     }
 
     void savePostAndRetrievePosts(String text, Context con, boolean is_annonymous, String temperature){
@@ -60,7 +64,7 @@ public class Post_Util extends Component {
         boolean is_anonymous;
         String temperature;
         private Context con;
-        PostActivity frontend = new PostActivity();
+
 
         protected String ParseDataIntoString(HttpEntity entity) throws IllegalStateException, IOException {
             InputStream in = entity.getContent();
