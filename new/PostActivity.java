@@ -1,4 +1,4 @@
-package com.example.rahulagarwal.trojannowfl2;
+package com.example.rmu.csci_578finalproject;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.rahulagarwal.trojannowfl2.model.Weather;
+import com.example.rmu.csci_578finalproject.model.Weather;
 
 
 public class PostActivity extends Activity{
@@ -218,7 +218,7 @@ public class PostActivity extends Activity{
 
                     String post = "";
                     if(anon.equals("False")){
-                         post += username + " said ";
+                        post += username + ": ";
                     }
 
                     post += onePost.getString("text") + " ";
