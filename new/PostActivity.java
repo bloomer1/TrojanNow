@@ -1,4 +1,4 @@
-package com.example.rahulagarwal.trojannowfl2;
+package com.example.rmu.csci_578finalproject;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.rahulagarwal.trojannowfl2.model.Weather;
+import com.example.rmu.csci_578finalproject.model.Weather;
 
 
 public class PostActivity extends Activity{
@@ -172,7 +172,7 @@ public class PostActivity extends Activity{
      THIS FUNCTION IS CALLED ANYTIME A USER DOES A POST AND THE BACKEND READS THE DATA BACK
      NOTE THIS ARRAY HAS ALREADY BEEN SORTED BY TIME OF POST, WITH LATEST POSTS PRINTED FIRST
      */
-    void updatePosts(JSONArray jsonData) {
+    void updatePosts(JSONArray jsonData, String username) {
 
 
 
@@ -200,7 +200,7 @@ public class PostActivity extends Activity{
                 String [] data = info.split(",");
                 String anon = data[0].substring(data[0].indexOf(":")+1);
                 String temp = data[1].substring(data[1].indexOf(":")+1);
-                System.out.println("User ID: " + onePost.getString("user"));
+                System.out.println("Username: " + username);
                 System.out.println("Post: " + onePost.getString("text"));
                 System.out.println("Anonymous: " + anon);
                 System.out.println("Temperature: " + temp);

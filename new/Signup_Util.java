@@ -33,7 +33,7 @@ public class Signup_Util extends Component {
     //Signs up the user
     public  void signUP(String uname, String pword) {
         SyncWithServer adder = new SyncWithServer();
-        adder.addUserPass(uname+pword);
+        adder.addUserPass(uname+"#"+pword);
         adder.execute();
     }
 

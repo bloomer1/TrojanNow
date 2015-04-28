@@ -1,4 +1,4 @@
-package com.example.rahulagarwal.trojannowfl2;
+package com.example.rmu.csci_578finalproject;
 
 /**
  * Created by rmu on 4/23/2015.
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -86,6 +87,34 @@ public class Post_Util extends Component {
             this.con = con;
         }
 
+        private String getUsername(int userID) {
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpContext localContext = new BasicHttpContext();
+            String path = "http://cs578.roohy.me/user/";
+            for (int i = 9; i < 14; i++) {
+                path = path + Integer.toString(i) + "/";
+                HttpGet httpGet = new HttpGet(path);
+                try {
+                    HttpResponse response = httpClient.execute(httpGet, localContext);
+                    HttpEntity entity = response.getEntity();
+                    text = ParseDataIntoString(entity);
+                    try {
+                        JSONObject obj = new JSONObject(text);
+                        String id = obj.getString("uid");
+                        if (id.equals(Integer.toString(userID))) {
+                            return obj.getString("name").substring(0,obj.getString("name").indexOf("#"));
+                        }
+                    } catch (JSONException e) {
+
+                    }
+                }
+                catch (Exception e) {
+                    return e.getLocalizedMessage();
+                }
+            }
+            return null;
+        }
+
         protected String doInBackground(Void... params) {
             String output = "Post Failed";
             DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -121,7 +150,7 @@ public class Post_Util extends Component {
                             + resp.getStatusLine().getStatusCode());
                 }*/
 
-                output = "Posted Successfully";
+            output = "Posted Successfully";
             //} catch (JSONException e) {
             //    e.printStackTrace();
             //} catch (UnsupportedEncodingException e) {
@@ -146,7 +175,7 @@ public class Post_Util extends Component {
                     JSONArray jsonData = new JSONArray(text);
                     // If a user has no posts, there's no point in passing nothing to the frontend
                     if (jsonData.length() > 0) {
-                        frontend.updatePosts(jsonData);
+                        frontend.updatePosts(jsonData,getUsername(i));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -64,7 +64,7 @@ public class Login_Util extends Component {
         context = con;
         uname = username.getText().toString();
         pword = password.getText().toString();
-        loginInfo = uname+pword;
+        loginInfo = uname+"#"+pword;
         checkLogin(con);
         /*if (username.getText().toString().equals("admin") &&
                 password.getText().toString().equals("admin")) {
