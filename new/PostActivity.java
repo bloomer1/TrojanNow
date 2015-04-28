@@ -1,4 +1,4 @@
-package com.example.rmu.csci_578finalproject;
+package com.example.rahulagarwal.trojannowfl2;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.rmu.csci_578finalproject.model.Weather;
+import com.example.rahulagarwal.trojannowfl2.model.Weather;
 
 
 public class PostActivity extends Activity{
@@ -60,6 +60,8 @@ public class PostActivity extends Activity{
         etext = (EditText)findViewById(R.id.text_content);
         annonymous = (CheckBox) findViewById(R.id.user_annonymous);
         temperature = (CheckBox) findViewById(R.id.user_weather);
+
+
 
         Intent previous = getIntent();
         userID = previous.getStringExtra("userID");
@@ -174,7 +176,7 @@ public class PostActivity extends Activity{
      */
     void updatePosts(JSONArray jsonData, String username) {
 
-
+        int j = 0;
 
 
         int []arr = {R.id.p1,R.id.p2,R.id.p3,R.id.p4,R.id.p5,
@@ -211,9 +213,22 @@ public class PostActivity extends Activity{
 
 
 
-                    postView = (TextView) findViewById(arr[i]);
+                    postView = (TextView) findViewById(arr[j]);
+                    j++;
 
-                    postView.setText(onePost.getString("text"));
+                    String post = "";
+                    if(anon.equals("False")){
+                         post += username + " said ";
+                    }
+
+                    post += onePost.getString("text") + " ";
+
+                    if(is_temperature == true){
+                        post += "it's" + " " + temp + " out here";
+                    }
+                    Log.d("complete post", post);
+                    postView.setText(post);
+
 
                 }
                 catch(Exception e){
