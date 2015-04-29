@@ -36,6 +36,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Post_Util extends Component {
 
@@ -90,9 +91,10 @@ public class Post_Util extends Component {
         private String getUsername(int userID) {
             HttpClient httpClient = new DefaultHttpClient();
             HttpContext localContext = new BasicHttpContext();
-            String path = "http://cs578.roohy.me/user/";
             for (int i = 9; i < 14; i++) {
+                String path = "http://cs578.roohy.me/user/";
                 path = path + Integer.toString(i) + "/";
+                System.out.println("path is " + path);
                 HttpGet httpGet = new HttpGet(path);
                 try {
                     HttpResponse response = httpClient.execute(httpGet, localContext);
@@ -101,15 +103,18 @@ public class Post_Util extends Component {
                     try {
                         JSONObject obj = new JSONObject(text);
                         String id = obj.getString("uid");
+                        System.out.println("id is " + id + " and userID is " + userID);
                         if (id.equals(Integer.toString(userID))) {
+                            System.out.println("found match and name is " + obj.getString("name").substring(0,obj.getString("name").indexOf("#")));
                             return obj.getString("name").substring(0,obj.getString("name").indexOf("#"));
                         }
                     } catch (JSONException e) {
-
+                        System.out.println("in another exception");
                     }
                 }
                 catch (Exception e) {
-                    return e.getLocalizedMessage();
+                    System.out.println("in an exception");
+                    e.getLocalizedMessage();
                 }
             }
             return null;
@@ -161,6 +166,8 @@ public class Post_Util extends Component {
             //    e.printStackTrace();
             //}
 
+            JSONArray allPosts = new JSONArray();
+            TreeMap<Integer,String> userIdtoName = new TreeMap<Integer,String>();
             /*
              Issue HTTP GET request to get all posts written and pass their data back to frontend
              */
@@ -175,12 +182,23 @@ public class Post_Util extends Component {
                     JSONArray jsonData = new JSONArray(text);
                     // If a user has no posts, there's no point in passing nothing to the frontend
                     if (jsonData.length() > 0) {
-                        frontend.updatePosts(jsonData,getUsername(i));
+                        //frontend.updatePosts(jsonData,getUsername(i));
+                        userIdtoName.put(i,getUsername(i));
+                        for (int j = 0; j < jsonData.length(); j++) {
+                            System.out.println("putting in pk " + jsonData.getJSONObject(j).getString("pk"));
+                            allPosts.put(jsonData.getJSONObject(j));
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+            System.out.println("allPosts size is " + allPosts.length());
+            for (Integer i : userIdtoName.keySet()) {
+                System.out.print("i = " + i.intValue());
+                System.out.println(", username is " + userIdtoName.get(i));
+            }
+            frontend.updatePosts(allPosts,userIdtoName);
 
             return output;
         }
@@ -192,5 +210,4 @@ public class Post_Util extends Component {
     }
 
 }
-
 

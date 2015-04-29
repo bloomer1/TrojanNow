@@ -19,6 +19,8 @@ import org.json.JSONObject;
 
 import com.example.rmu.csci_578finalproject.model.Weather;
 
+import java.util.TreeMap;
+
 
 public class PostActivity extends Activity{
 
@@ -174,7 +176,7 @@ public class PostActivity extends Activity{
      THIS FUNCTION IS CALLED ANYTIME A USER DOES A POST AND THE BACKEND READS THE DATA BACK
      NOTE THIS ARRAY HAS ALREADY BEEN SORTED BY TIME OF POST, WITH LATEST POSTS PRINTED FIRST
      */
-    void updatePosts(JSONArray jsonData, String username) {
+    void updatePosts(JSONArray jsonData, TreeMap userlist) {
 
         int j = 0;
 
@@ -192,7 +194,7 @@ public class PostActivity extends Activity{
         };
 
 
-        for (int i = jsonData.length()-1; i >= 0; i--) {
+        for (int i = jsonData.length()-1; i >= 2; i--) {
             System.out.println("-------------------------------------------------------");
             try {
 
@@ -202,7 +204,7 @@ public class PostActivity extends Activity{
                 String [] data = info.split(",");
                 String anon = data[0].substring(data[0].indexOf(":")+1);
                 String temp = data[1].substring(data[1].indexOf(":")+1);
-                System.out.println("Username: " + username);
+                System.out.println("Username: " + userlist.get(new Integer(Integer.parseInt(onePost.getString("user")))));
                 System.out.println("Post: " + onePost.getString("text"));
                 System.out.println("Anonymous: " + anon);
                 System.out.println("Temperature: " + temp);
@@ -218,7 +220,7 @@ public class PostActivity extends Activity{
 
                     String post = "";
                     if(anon.equals("False")){
-                        post += username + ": ";
+                        post += userlist.get(new Integer(Integer.parseInt(onePost.getString("user")))) + ": ";
                     }
 
                     post += onePost.getString("text") + " ";
