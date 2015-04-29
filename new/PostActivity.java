@@ -59,6 +59,18 @@ public class PostActivity extends Activity{
 
         setContentView(R.layout.post);
 
+        TextView loginScreen = (TextView) findViewById(R.id.logout);
+
+        // Listening to Login Screen link
+        loginScreen.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View arg0) {
+                // Closing registration screen
+                // Switching to Login Screen/closing register screen
+                finish();
+            }
+        });
+
         etext = (EditText)findViewById(R.id.text_content);
         annonymous = (CheckBox) findViewById(R.id.user_annonymous);
         temperature = (CheckBox) findViewById(R.id.user_weather);
@@ -68,7 +80,6 @@ public class PostActivity extends Activity{
         Intent previous = getIntent();
         userID = previous.getStringExtra("userID");
     }
-
 
     /**
      Added by rahhulagarwal
@@ -194,7 +205,7 @@ public class PostActivity extends Activity{
         };
 
 
-        for (int i = jsonData.length()-1; i >= 2; i--) {
+        for (int i = jsonData.length()-1; i >= 0; i--) {
             System.out.println("-------------------------------------------------------");
             try {
 
@@ -221,11 +232,13 @@ public class PostActivity extends Activity{
                     String post = "";
                     if(anon.equals("False")){
                         post += userlist.get(new Integer(Integer.parseInt(onePost.getString("user")))) + ": ";
+                    } else {
+                        post += "anonymous: ";
                     }
 
                     post += onePost.getString("text") + " ";
 
-                    if(is_temperature == true){
+                    if(is_temperature == true && !temp.equals("N/A")){
                         post += "it's" + " " + temp + " out here";
                     }
                     Log.d("complete post", post);
