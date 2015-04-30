@@ -56,7 +56,7 @@ public class JSONWeatherParser {
         //JSONObject cObj = getObject("clouds", jObj);
         //weather.clouds.setPerc(getInt("all", cObj));
 
-        // We download the icon to show
+
 
 
         return weather;

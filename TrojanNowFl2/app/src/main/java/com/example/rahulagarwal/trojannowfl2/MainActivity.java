@@ -17,7 +17,6 @@ public class MainActivity extends Activity {
 
     private EditText  username=null;
     private EditText password=null;
-    //private TextView attempts;
     private Button login;
 
 
@@ -27,8 +26,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         username = (EditText)findViewById(R.id.editText1);
         password = (EditText)findViewById(R.id.editText2);
-        //attempts = (TextView)findViewById(R.id.textView5);
-        //attempts.setText(Integer.toString(counter));
         login = (Button)findViewById(R.id.button1);
     }
 

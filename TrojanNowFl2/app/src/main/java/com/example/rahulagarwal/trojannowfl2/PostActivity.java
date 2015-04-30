@@ -59,6 +59,18 @@ public class PostActivity extends Activity{
 
         setContentView(R.layout.post);
 
+        TextView loginScreen = (TextView) findViewById(R.id.logout);
+
+        // Listening to Login Screen link
+        loginScreen.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View arg0) {
+                // Closing registration screen
+                // Switching to Login Screen/closing register screen
+                finish();
+            }
+        });
+
         etext = (EditText)findViewById(R.id.text_content);
         annonymous = (CheckBox) findViewById(R.id.user_annonymous);
         temperature = (CheckBox) findViewById(R.id.user_weather);
@@ -68,7 +80,6 @@ public class PostActivity extends Activity{
         Intent previous = getIntent();
         userID = previous.getStringExtra("userID");
     }
-
 
     /**
      Added by rahhulagarwal
@@ -99,13 +110,13 @@ public class PostActivity extends Activity{
 
             JSONWeatherTask task = new JSONWeatherTask();
             task.execute(new String[]{gcoord[0],gcoord[1]});
-            //while(opentemperature == null);
+
         } else {
             if(is_temperature == false){
                 opentemperature = null;
             }
         }
-        posts.savePostAndRetrievePosts(text, getApplicationContext(), is_annonymous, opentemperature);
+       posts.savePostAndRetrievePosts(text, getApplicationContext(), is_annonymous, opentemperature);
     }
 
     //added by rahulagarwal
@@ -140,11 +151,6 @@ public class PostActivity extends Activity{
             opentemperature = Math.round((weather.temperature.getTemp() - 273.15)) + " C";
             Log.d("opentemperature", opentemperature);
 
-
-
-
-
-
         }
 
 
@@ -155,20 +161,6 @@ public class PostActivity extends Activity{
 
 
     }
-
-    //Added by rahulagarwal
-    //Method stub for saving current post and Retrieve all posts on the server
-    //1-1 connector for Post User Story
-    /*void savePostAndRetrievePosts(String text, boolean is_annonymous, String temperature){
-
-
-
-        Log.d("textfrom function ", text);
-        Log.d("isAnnonymous", String.valueOf(is_annonymous));
-        Log.d("temperature", String.valueOf(temperature));
-
-
-    }*/
 
 
     /*
@@ -193,7 +185,7 @@ public class PostActivity extends Activity{
                 R.id.p46,R.id.p47,R.id.p48,R.id.p49,R.id.p50
         };
 
-
+        Log.d("JsonData",String.valueOf(jsonData));
         for (int i = jsonData.length()-1; i >= 0; i--) {
             System.out.println("-------------------------------------------------------");
             try {
@@ -221,11 +213,13 @@ public class PostActivity extends Activity{
                     String post = "";
                     if(anon.equals("False")){
                         post += userlist.get(new Integer(Integer.parseInt(onePost.getString("user")))) + ": ";
+                    } else {
+                        post += "anonymous: ";
                     }
 
                     post += onePost.getString("text") + " ";
 
-                    if(is_temperature == true){
+                    if(is_temperature == true && !temp.equals("N/A")){
                         post += "it's" + " " + temp + " out here";
                     }
                     Log.d("complete post", post);
@@ -251,15 +245,4 @@ public class PostActivity extends Activity{
 
 
 
-    //Adds a post
-    void addPost(String content, boolean isAnnonymous){
-
-
-
-    }
-
-    //Deletes a Post
-    void removePost(String content){
-
-    }
 }

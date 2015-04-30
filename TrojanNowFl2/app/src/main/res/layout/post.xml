@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:padding="10dip"
             android:layout_below="@id/header"
-            >
+            android:weightSum="1">
 
             <EditText android:id="@+id/text_content"
                 android:layout_width="fill_parent"
@@ -60,11 +60,16 @@
                 android:text="@string/weather" />
 
             <Button android:id="@+id/post"
-                android:layout_width="fill_parent"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
                 android:onClick="clickpost"
                 android:text="Post"/>
+
+            <Button android:id="@+id/logout"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:text="Logout"/>
 
             <TextView
                 android:id="@+id/p1"

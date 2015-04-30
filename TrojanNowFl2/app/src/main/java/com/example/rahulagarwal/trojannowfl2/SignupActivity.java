@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.lang.*;
 
 /**
@@ -53,12 +55,18 @@ public class SignupActivity extends Activity {
         Log.i("Rahul", password.getText().toString());
         Log.i("Rahul",email.getText().toString());
 
-        uname = username.getText().toString();
-        pword = password.getText().toString();
+        if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty() || email.getText().toString().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "You must fill out all the fields!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
 
-        Signup_Util signup = new Signup_Util("SignUp_Util");
+            uname = username.getText().toString();
+            pword = password.getText().toString();
 
-        signup.signUP(uname,pword);//connector
+            Signup_Util signup = new Signup_Util("SignUp_Util");
+
+            signup.signUP(uname, pword);//connector
+        }
     }
 
 }
